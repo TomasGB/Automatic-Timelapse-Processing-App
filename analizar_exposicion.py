@@ -5,13 +5,13 @@ import os
 from PIL import Image, ImageEnhance
 
 
-def ConvertirAVideoConCorreccion(imgs_corregidas,borrar_imgs_corregidas):
+def AnalizarExposicion():
     i=0
 
-    imgs_hsv_direc='timelapses-imgs'                                 #direccion donde estan las fotos sin correccion
+    imgs_hsv_direc='timelapse_imgs'                                         #direccion donde estan las fotos sin correccion
     lista_imgs_hsv = glob.glob(f"{imgs_hsv_direc}/*.jpg")                   #glob busca todos los archivos con el formato especificado
     imgs_hsv_ordenadas = sorted(lista_imgs_hsv, key=os.path.getmtime)       # las ordena por numero
-    imgs_corregidas ='hsv_imgs/gamma/corregidas'                            #direccion donde se van a guardar las fotos con la correccion hecha
+    imgs_corregidas ='hsv_imgs'                            #direccion donde se van a guardar las fotos con la correccion hecha
 
     if not os.path.exists(imgs_corregidas):
         os.mkdir(imgs_corregidas)
@@ -30,23 +30,26 @@ def ConvertirAVideoConCorreccion(imgs_corregidas,borrar_imgs_corregidas):
         
         #Parametros limite para la correcion
 
-        if v_avg[2] >= 40:
+        if v_avg[2] >= 60:
+            img.save(nombrecorr)
+        elif v_avg[2] < 60 and v_avg[2] > 40:
+            en = ImageEnhance.Brightness(img)
+            img = en.enhance(1.2)
             img.save(nombrecorr)
         elif v_avg[2] < 40 and v_avg[2] > 35:
             en = ImageEnhance.Brightness(img)
-            img = en.enhance(1.6)
+            img = en.enhance(1.5)
             img.save(nombrecorr)
         else: 
             en = ImageEnhance.Brightness(img)
             img = en.enhance(1.7)
             img.save(nombrecorr)
 
-        
-        print(v_avg[2], 'imagen:',i)
+        print('Exposicion: ',v_avg[2], 'imagen:',i)
         acum = acum + v_avg[2]
         i+=1
 
     v_medioTotal=acum/i
 
-    print('Brillo promedio en todo el timelapse: ',v_medioTotal)
+    print('Exposicion promedio en todo el timelapse: ',v_medioTotal)
 
