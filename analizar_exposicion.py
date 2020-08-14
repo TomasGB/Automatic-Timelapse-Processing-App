@@ -8,10 +8,10 @@ from PIL import Image, ImageEnhance
 def AnalizarExposicion():
     i=0
 
-    imgs_hsv_direc='timelapse_imgs'                                         #direccion donde estan las fotos sin correccion
+    imgs_hsv_direc= 'timelapse_imgs'                                         #direccion donde estan las fotos sin correccion
     lista_imgs_hsv = glob.glob(f"{imgs_hsv_direc}/*.jpg")                   #glob busca todos los archivos con el formato especificado
     imgs_hsv_ordenadas = sorted(lista_imgs_hsv, key=os.path.getmtime)       # las ordena por numero
-    imgs_corregidas ='hsv_imgs'                            #direccion donde se van a guardar las fotos con la correccion hecha
+    imgs_corregidas = 'hsv_imgs'                                            #direccion donde se van a guardar las fotos con la correccion hecha
 
     if not os.path.exists(imgs_corregidas):
         os.mkdir(imgs_corregidas)
@@ -30,9 +30,13 @@ def AnalizarExposicion():
         
         #Parametros limite para la correcion
 
-        if v_avg[2] >= 60:
+        if v_avg[2] >= 90:
+            en = ImageEnhance.Brightness(img)
+            img = en.enhance(0.9)
             img.save(nombrecorr)
-        elif v_avg[2] < 60 and v_avg[2] > 40:
+        elif v_avg[2] < 90 and v_avg[2] >= 60:
+            img.save(nombrecorr)
+        elif v_avg[2] < 60 and v_avg[2] >= 40:
             en = ImageEnhance.Brightness(img)
             img = en.enhance(1.2)
             img.save(nombrecorr)

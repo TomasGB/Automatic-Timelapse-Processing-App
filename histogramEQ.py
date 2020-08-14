@@ -1,5 +1,4 @@
 import cv2
-import matplotlib.pyplot as plt
 import os
 from PIL import Image, ImageEnhance
 
@@ -9,7 +8,7 @@ def EQ_Histograma(imgs_corregidas,eq_direc):
         print('Equalizando foto: ',i)
         filename = f"{imgs_corregidas}/{i}.jpg"
         img_eq = cv2.imread(filename, 1)
-        img_eq = cv2.cvtColor(img_eq, cv2.COLOR_BGR2RGB)
+        img_eq = cv2.cvtColor(img_eq, cv2.COLOR_HSV2RGB)
         R, G, B = cv2.split(img_eq)
         clahe = cv2.createCLAHE(clipLimit=2.0, tileGridSize=(8,8))
         output2_R = clahe.apply(R)
