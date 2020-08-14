@@ -22,4 +22,4 @@ After taking the photos, runs the function 'AnalizarExposicion' declared in the 
 
 ## Aditional comments
 
-In the 'timelapse.py', in 'video = cv2.VideoCapture(0)'  the 0 indicates the default image capture device on your computer, if you have more than one maybe you will need to change that number.
+In the 'timelapse.py' file, in 'video = cv2.VideoCapture(0)'  the 0 indicates the default image capture device on your computer, if you have more than one maybe you will need to change that number.
