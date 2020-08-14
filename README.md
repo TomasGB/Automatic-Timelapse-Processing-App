@@ -4,7 +4,7 @@ This application is capable of taking the photos according to the specified time
 
 ## How it works?
 
-After taking the photos, runs the function 'AnalizarExposicion' declared in the file analizar_exposicion.py wich takes every photo and convert them from RGB to HSV and for every photo calculates the average V value, and applies a suitable enhancement and saves them, then on these new photos runs the function 'EQ_Histograma' wich applies CLAHE (contrast limited adaptive histogram equalization) wich refines the overall look of the photos to finally export them in the mp4 file.
+After taking the photos, runs the function 'AnalizarExposicion' declared in the file analizar_exposicion.py wich takes every photo, convert them from RGB to HSV, and calculates the average V value, applies a suitable enhancement and saves them, then on these new photos runs the function 'EQ_Histograma' wich applies CLAHE (contrast limited adaptive histogram equalization) wich refines the overall look of the photos to finally export them in the mp4 file.
 
 ## Requierements
 
