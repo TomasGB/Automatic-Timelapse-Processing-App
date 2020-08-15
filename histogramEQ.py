@@ -20,4 +20,5 @@ def EQ_Histograma(imgs_corregidas,eq_direc):
         nombreeq = f"{eq_direc}/{i}.jpg"
 
         img.save(nombreeq)
+        os.remove(filename)
         i +=1

@@ -84,13 +84,10 @@ def ConvertirAVideo(result,imgs_direc,borrar_imgs):
         image_frame = cv2.imread(file)
         print('procesando fotos...')
         result.write(image_frame)
-    if borrar_imgs:
-        for file in lista_imgs:
-            os.remove(file)
-    if borrar_imgs_corregidas:
-        for file in lista_imgs:
-            os.remove(file)
 
+        if borrar_imgs:
+            for file in lista_imgs:
+                os.remove(file)
 
 imgs_corregidas ='hsv_imgs'
 eq_direc='eq_imgs'

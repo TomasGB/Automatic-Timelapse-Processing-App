@@ -7,7 +7,6 @@ from PIL import Image, ImageEnhance
 
 def AnalizarExposicion():
     i=0
-
     imgs_hsv_direc= 'timelapse_imgs'                                         #direccion donde estan las fotos sin correccion
     lista_imgs_hsv = glob.glob(f"{imgs_hsv_direc}/*.jpg")                   #glob busca todos los archivos con el formato especificado
     imgs_hsv_ordenadas = sorted(lista_imgs_hsv, key=os.path.getmtime)       # las ordena por numero
