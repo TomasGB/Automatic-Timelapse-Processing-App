@@ -32,7 +32,7 @@ def timelapseCrear(duracionG,intervaloFoto,fotosp,dispositivo):
     
     fotosp = fotosp.lower()
     
-    borrar_imgs = True
+    borrar_imgs = False
 
     if fotosp == 'y' : 
         borrar_imgs_corregidas = False 
@@ -61,7 +61,7 @@ def timelapseCrear(duracionG,intervaloFoto,fotosp,dispositivo):
         cv2.imwrite(filename, frame)
         time.sleep(intervaloFoto) #controla cada cuanto se saca una foto
         if cv2.waitKey(1) & 0xFF == ord('q'): 
-            break
+                break
 
     def ConvertirAVideo(result,imgs_direc,borrar_imgs):
         lista_imgs = glob.glob(f"{imgs_direc}/*.jpg")
