@@ -50,8 +50,5 @@ def gamma_correct():
             cv2.imwrite(nombrecorr,gamma_corr_img)
         print('Exposicion: ',round(v_avg[2]), 'imagen:',i)
         acum = acum + round(v_avg[2])
-        i= i + 1
-    
-    v_medioTotal=acum/i
+        i = i + 1
 
-    print('Exposicion promedio en todo el timelapse: ',round(v_medioTotal))

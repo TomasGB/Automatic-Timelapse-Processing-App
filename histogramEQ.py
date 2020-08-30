@@ -3,7 +3,9 @@ import os
 from PIL import Image, ImageEnhance
 
 def EQ_Histograma(imgs_corregidas,eq_direc):
+
     i = 0
+    
     for file in os.listdir(imgs_corregidas):
         print('Equalizando foto: ',i)
         filename = f"{imgs_corregidas}/{i}.jpg"
