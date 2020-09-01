@@ -25,7 +25,7 @@ def gamma_correct():
         nombrecorr = f"{imgs_corregidas}/{i}.jpg"
 
         if round(v_avg[2]) >= 150:
-            gamma_corr_img = np.array(255*(image/255)**1.2,dtype='uint8')
+            gamma_corr_img = np.array(255*(image/255)**1.1,dtype='uint8')
             cv2.imwrite(nombrecorr,gamma_corr_img)
         elif round(v_avg[2]) < 150 and round(v_avg[2]) >= 90:
             gamma_corr_img = image
