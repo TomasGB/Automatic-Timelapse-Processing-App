@@ -17,9 +17,14 @@ After taking the photos, runs the function 'gamma_correct' declared in the file 
 * Change directory with cd to the location of the program 
 * Run by typing "python main.py"
 * First you need to enter how long do you want to take photos (enter the amount in minutes).
-* Then enter the interval beetwen each photo (enter the amount in seconds).
-* Finally type 'y' if you want to keep the processed photos or 'n' if you want to delete them.
+* Then enter the interval between each photo (enter the amount in seconds).
+* Then type 'y' if you want to keep the processed photos or 'n' if you want to delete them.
+* Finally choose the video capture device
 
-## Aditional comments
+## Aditional comments:
 
-In the 'timelapse.py' file, in 'video = cv2.VideoCapture(dispositivo)', dispositivo it's used to indicate the image capture device on your computer, if you want to use the default device use 0, have more than one maybe you will need to change that to the correct number.
+In the 'timelapse.py' file, in 'video = cv2.VideoCapture(dispositivo)', dispositivo it's used to indicate the image capture device on your computer, if you want to use the default device use 0, have more than one maybe you will need to change it to the correct number.
+
+## Example:
+
+![Preview](timelapse_github.gif "Final result example")
