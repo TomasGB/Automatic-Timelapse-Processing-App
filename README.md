@@ -27,4 +27,4 @@ In the 'timelapse.py' file, in 'video = cv2.VideoCapture(dispositivo)', disposit
 
 ## Final result example:
 
-![](timelapse_github.gif )
+![gif](timelapse_github.gif )
