@@ -27,4 +27,6 @@ In the 'timelapse.py' file, in 'video = cv2.VideoCapture(dispositivo)', disposit
 
 ## Final result example:
 
-![gif](timelapse_github.gif )
+<video width="320" height="240" controls>
+  <source src="timelapse_github.mp4" type="video/mp4">
+</video>
