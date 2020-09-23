@@ -5,12 +5,16 @@ import glob
 import os
 
 def gamma_correct():
+    
     i=0
 
-    imgs_hsv_direc= 'timelapse_imgs'                 #direccion donde estan las fotos sin correccion
-    lista_imgs_hsv = glob.glob(f"{imgs_hsv_direc}/*.jpg")                   #glob busca todos los archivos con el formato especificado
-    imgs_hsv_ordenadas = sorted(lista_imgs_hsv, key=os.path.getmtime)       # las ordena por numero
-    imgs_corregidas = 'hsv_imgs'                            #direccion donde se van a guardar las fotos con la correccion hecha
+    #directory where the photos without correction are
+    imgs_hsv_direc= 'timelapse_imgs'
+    lista_imgs_hsv = glob.glob(f"{imgs_hsv_direc}/*.jpg")
+    imgs_hsv_ordenadas = sorted(lista_imgs_hsv, key=os.path.getmtime)
+
+    #directory where the photos with the correction are going to be saved
+    imgs_corregidas = 'hsv_imgs'
 
     if not os.path.exists(imgs_corregidas):
         os.mkdir(imgs_corregidas)
@@ -19,8 +23,12 @@ def gamma_correct():
 
     for file in os.listdir(imgs_hsv_direc):
         filename = f"{imgs_hsv_direc}/{i}.jpg"
-        image = cv2.imread(filename)                                
-        hsvImage = cv2.cvtColor(image, cv2.COLOR_BGR2HSV)           #Convierte las fotos de BGR a HSV
+        image = cv2.imread(filename)
+
+        # Converts the photos from RGB to HSV and calculates the avarage V value for each photo
+        # to later apply the gamma correction needed
+
+        hsvImage = cv2.cvtColor(image, cv2.COLOR_BGR2HSV)
         v_avg = cv2.mean(hsvImage)
         nombrecorr = f"{imgs_corregidas}/{i}.jpg"
 
@@ -48,7 +56,7 @@ def gamma_correct():
         else: 
             gamma_corr_img = np.array(255*(image/255)**0.7,dtype='uint8')
             cv2.imwrite(nombrecorr,gamma_corr_img)
-        print('Exposicion: ',round(v_avg[2]), 'imagen:',i)
+        print('Brightness: ',round(v_avg[2]), 'Photo:',i)
         acum = acum + round(v_avg[2])
         i = i + 1
 
