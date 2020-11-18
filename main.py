@@ -1,8 +1,26 @@
-from tkinter import *
+from tkinter import Label,Grid,LabelFrame,Entry,Tk,N
 from tkinter import filedialog
 from tkinter import ttk
 import timelapse
-from threading import Thread
+import threading 
+
+def FuncEmpezar():
+
+    def procesando():
+        progress.pack(pady=15)
+        progress.start(10)
+        duracionG = float(Duracion_Entry.get())
+        intervaloFoto = float(Intervalos_Entry.get())
+        fotosp = str(FotosP_Entry.get())
+        dispositivo = int(Dispositivo_Entry.get())
+        timelapse.timelapseCrear(duracionG,intervaloFoto,fotosp,dispositivo)
+        progress.stop()
+        progress.pack_forget()
+        progreso.config(text="Timelapse finalizado.")
+
+    progreso.config(text="Procesando...")
+    t = threading.Thread(target=procesando)
+    t.start()
 
 ventana = Tk()
 ventana.geometry("600x500")
@@ -37,23 +55,12 @@ Dispositivo_label.pack()
 Dispositivo_Entry = Entry(groupCrear, width="35")
 Dispositivo_Entry.pack()
 
-progreso = Label(ventana, text=" ", bg="#151515", foreground="#FFFFFF", font="Helvetica 14" )
+progreso = Label(ventana, text=" ", bg="#151515", foreground="#FFFFFF", font="Helvetica 14")
 progreso.grid(column="0",row="5",columnspan="3")
-#Empezar
-
-def FuncEmpezar():
-
-    def procesando():
-        duracionG = float(Duracion_Entry.get())
-        intervaloFoto = float(Intervalos_Entry.get())
-        fotosp = str(FotosP_Entry.get())
-        dispositivo = int(Dispositivo_Entry.get())
-        timelapse.timelapseCrear(duracionG,intervaloFoto,fotosp,dispositivo)
-        progreso.config(text="Timelapse finalizado.")
-
-    procesando()
 
 botonEmpezar = ttk.Button(ventana, text="Empezar", command= FuncEmpezar)
 botonEmpezar.grid(column="0", row="4",columnspan="3", pady=25 )
+
+progress = ttk.Progressbar(groupCrear, length = 100, mode = 'indeterminate')
 
 ventana.mainloop()

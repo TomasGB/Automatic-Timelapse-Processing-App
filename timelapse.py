@@ -12,6 +12,7 @@ def timelapseCrear(duracionG,intervaloFoto,fotosp,dispositivo):
 
     if (video.isOpened() == False):  
         print("Error reading video file") 
+        return quit
     
 
     frame_width = int(video.get(3)) 
