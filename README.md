@@ -14,8 +14,9 @@ After taking the photos, runs the function 'gamma_correct' declared in the file 
 ## How to use:
 
 * Open up command prompt / terminal
-* Change directory with cd to the location of the program 
-* Run by typing "python main.py"
+* Install the dependencies.
+* Change directory with cd to the location of the files.
+* Run "main.py"
 * First you need to enter how long do you want to take photos (enter the amount in minutes).
 * Then enter the interval between each photo (enter the amount in seconds).
 * Then type 'y' if you want to keep the processed photos or 'n' if you want to delete them.
