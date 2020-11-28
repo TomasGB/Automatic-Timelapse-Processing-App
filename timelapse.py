@@ -1,5 +1,5 @@
 import os   
-import cv2 
+import cv2
 import datetime
 import time
 import glob
@@ -22,8 +22,8 @@ def timelapseCrear(duracionG,intervaloFoto,fotosp,dispositivo):
     #cv2.VideoWriter('filename',  cv2.VideoWriter_fourcc(*'Codec'), fps, resolution)
     # 0x7634706d codec code for mp4 format
 
-    result = cv2.VideoWriter('timelapse.mp4',  0x7634706d, 24.97, size)
-    resultCorr = cv2.VideoWriter('timelapse_eq.mp4',  0x7634706d, 24.97, size)
+    result = cv2.VideoWriter(f'timelapse.mp4',  0x7634706d, 24.97, size)
+    resultCorr = cv2.VideoWriter(f'timelapse_processed.mp4',  0x7634706d, 24.97, size)
 
     #Configurar los parametros del el timelapse
     
