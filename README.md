@@ -32,7 +32,7 @@ In the 'timelapse.py' file, in 'video = cv2.VideoCapture(device)', device it's u
 ![UI](imgs/UI.png)
 
 #### Examples
-![gif](imgs/timelapse_github2.gif)
+![gif](imgs/timelapse_2.gif)
 
 ![gif](imgs/timelapse_github.gif)
 
