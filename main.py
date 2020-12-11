@@ -4,9 +4,9 @@ from tkinter import ttk
 import timelapse
 import threading 
 
-def FuncEmpezar():
+def FuncStart():
 
-    def procesando():
+    def processing():
         progress.pack(pady=15)
         progress.start(10)
         duracionG = float(Duracion_Entry.get())
@@ -19,7 +19,7 @@ def FuncEmpezar():
         progreso.config(text="Timelapse finished.")
 
     progreso.config(text="Processing...")
-    t = threading.Thread(target=procesando)
+    t = threading.Thread(target=processing)
     t.start()
 
 ventana = Tk()
@@ -58,7 +58,7 @@ Dispositivo_Entry.pack()
 progreso = Label(ventana, text=" ", bg="#151515", foreground="#FFFFFF", font="Helvetica 14")
 progreso.grid(column="0",row="5",columnspan="3")
 
-botonEmpezar = ttk.Button(ventana, text="Empezar", command= FuncEmpezar)
+botonEmpezar = ttk.Button(ventana, text="Start", command= FuncStart)
 botonEmpezar.grid(column="0", row="4",columnspan="3", pady=25 )
 
 progress = ttk.Progressbar(groupCrear, length = 100, mode = 'indeterminate')
