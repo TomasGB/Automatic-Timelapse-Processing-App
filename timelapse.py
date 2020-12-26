@@ -54,7 +54,7 @@ def timelapseCrear(durationG,photosInterval,procPhotosKeep,device):
 
     while datetime.datetime.now() < end:
         ret, frame = video.read()
-        print('Time left:',fin-datetime.datetime.now())
+        print('Time left:',end-datetime.datetime.now())
         filename = f"{imgs_direc}/{i}.jpg"
         i+=1
         cv2.imwrite(filename, frame)
