@@ -8,19 +8,19 @@ After taking the photos, runs the function 'gamma_correct' declared in the file 
 
 ## Dependencies
 
-* OpenCV  [Link](https://opencv.org/)
-* Pillow (PIL) [Link](https://python-pillow.org/)
+-   OpenCV [Link](https://opencv.org/)
+-   Pillow (PIL) [Link](https://python-pillow.org/)
 
 ## How to use:
 
-* Open up command prompt / terminal.
-* Install the dependencies.
-* Change directory with cd to the location of the files.
-* Run "main.py".
-* First you need to enter how long do you want to take photos (enter the amount in minutes).
-* Then enter the interval between each photo (enter the amount in seconds).
-* Then type 'y' if you want to keep the processed photos or 'n' if you want to delete them.
-* Finally choose the video capture device.
+-   Open up command prompt / terminal.
+-   Install the dependencies.
+-   Change directory with cd to the location of the files.
+-   Run "main.py".
+-   First you need to enter how long do you want to take photos (enter the amount in minutes).
+-   Then enter the interval between each photo (enter the amount in seconds).
+-   Then type 'y' if you want to keep the processed photos or 'n' if you want to delete them.
+-   Finally choose the video capture device.
 
 ## Aditional comments:
 
@@ -29,10 +29,11 @@ In the 'timelapse.py' file, in 'video = cv2.VideoCapture(device)', device it's u
 ## Final result:
 
 #### User Interface
-![UI](imgs/UI.png)
+
+![UI](imgs/timelapseUI.gif)
 
 #### Examples
+
 ![gif](imgs/timelapse_2.gif)
 
 ![gif](imgs/timelapse_github.gif)
-
