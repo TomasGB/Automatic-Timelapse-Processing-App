@@ -1,5 +1,5 @@
 import os
-import cv2
+from cv2 import cv2
 import datetime
 import time
 import glob
@@ -7,7 +7,8 @@ import histogramEQ
 import gamma
 
 
-def timelapseCrear(durationG, photosInterval, Resolution, procPhotosKeep, device):
+def timelapseCrear(durationG, photosInterval, Resolution, procPhotosKeep,
+                   device):
 
     if Resolution == '720':
         width = 1280
@@ -40,9 +41,9 @@ def timelapseCrear(durationG, photosInterval, Resolution, procPhotosKeep, device
     #cv2.VideoWriter('filename',  cv2.VideoWriter_fourcc(*'Codec'), fps, resolution)
     # 0x7634706d codec code for mp4 format
 
-    result = cv2.VideoWriter(f'timelapse.mp4',  0x7634706d, 24.97, size)
-    resultCorr = cv2.VideoWriter(
-        f'timelapse_processed.mp4',  0x7634706d, 24.97, size)
+    result = cv2.VideoWriter(f'timelapse.mp4', 0x7634706d, 24.97, size)
+    resultCorr = cv2.VideoWriter(f'timelapse_processed.mp4', 0x7634706d, 24.97,
+                                 size)
 
     # Timelapse parameters config
 
@@ -73,7 +74,7 @@ def timelapseCrear(durationG, photosInterval, Resolution, procPhotosKeep, device
 
     while datetime.datetime.now() < end:
         ret, frame = video.read()
-        print('Time left:', end-datetime.datetime.now())
+        print('Time left:', end - datetime.datetime.now())
         filename = f"{imgs_direc}/{i}.jpg"
         i += 1
         cv2.imwrite(filename, frame)
