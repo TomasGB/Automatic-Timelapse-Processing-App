@@ -1,25 +1,24 @@
-import cv2
+from cv2 import cv2
 import numpy as np
 import math
 import glob 
 import os
+from PIL import Image, ImageEnhance
 
-def gamma_correct():
-    
+
+def gamma_correct(imgs_direc,processed_imgs):
+    #'imgs_direc' directory where the photos without correction are
+    #'processed_imgs' directory where the photos with the correction are going to be saved
+
     i=0
-    #directory where the photos without correction are
-    imgs_hsv_direc= 'timelapse_imgs'
-
-    #directory where the photos with the correction are going to be saved
-    processed_imgs = 'hsv_imgs'
 
     if not os.path.exists(processed_imgs):
         os.mkdir(processed_imgs)
 
     acum = 0
 
-    for file in os.listdir(imgs_hsv_direc):
-        filename = f"{imgs_hsv_direc}/{i}.jpg"
+    for file in os.listdir(imgs_direc):
+        filename = f"{imgs_direc}/{i}.jpg"
         image = cv2.imread(filename)
 
         # Converts the photos from RGB to HSV and calculates the avarage V value for each photo
@@ -56,4 +55,30 @@ def gamma_correct():
         print('Brightness: ',round(v_avg[2]), 'Photo:',i)
         acum = acum + round(v_avg[2])
         i = i + 1
+
+
+def EQ_Histograma(processed_imgs,eq_direc):
+    
+    i = 0
+    for file in os.listdir(processed_imgs):
+        print('Equalizing photo: ',i)
+        filename = f"{processed_imgs}/{i}.jpg"
+        img_eq = cv2.imread(filename, 1)
+        img_eq = cv2.cvtColor(img_eq, cv2.COLOR_HSV2RGB)
+        R, G, B = cv2.split(img_eq)
+
+        #apply CLAHE to each RGB channel
+        clahe = cv2.createCLAHE(clipLimit=2.0, tileGridSize=(8,8))
+        output2_R = clahe.apply(R)
+        output2_G = clahe.apply(G)
+        output2_B = clahe.apply(B)
+        
+        #Merge the channels again
+        img_eq = cv2.merge((output2_R, output2_G, output2_B))
+        img = Image.open(filename)
+        nameEq = f"{eq_direc}/{i}.jpg"
+
+        img.save(nameEq)
+        os.remove(filename)
+        i +=1
 

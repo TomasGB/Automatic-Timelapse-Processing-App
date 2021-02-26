@@ -11,9 +11,10 @@ def FuncStart():
         progress.start(10)
         duracionG = float(Duracion_Entry.get())
         intervaloFoto = float(Intervalos_Entry.get())
+        Resolution = str(Resolution_Entry.get())
         fotosp = str(FotosP_Entry.get())
         dispositivo = int(Dispositivo_Entry.get())
-        timelapse.timelapseCrear(duracionG,intervaloFoto,fotosp,dispositivo)
+        timelapse.timelapseCrear(duracionG,intervaloFoto,Resolution,fotosp,dispositivo)
         progress.stop()
         progress.pack_forget()
         progreso.config(text="Timelapse finished.")
@@ -44,6 +45,11 @@ Intervalos_label = Label(groupCrear, text="Interval between photos (seconds)" ,p
 Intervalos_label.pack()
 Intervalos_Entry = Entry(groupCrear, width="35")
 Intervalos_Entry.pack()
+
+Resolution_label = Label(groupCrear, text="Resolution (480, 720, 1080, 2k, 4k)" ,pady=5, bg="#151515", foreground="#FFFFFF", font="Helvetica 10")
+Resolution_label.pack()
+Resolution_Entry = Entry(groupCrear, width="35")
+Resolution_Entry.pack()
 
 FotosP_label = Label(groupCrear, text="Keep processed photos (y/n)" ,pady=5, bg="#151515", foreground="#FFFFFF", font="Helvetica 10")
 FotosP_label.pack()
