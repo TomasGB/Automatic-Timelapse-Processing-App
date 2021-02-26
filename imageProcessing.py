@@ -4,25 +4,11 @@ import math
 import glob
 import os
 from PIL import Image, ImageEnhance
-
-<<<<<<< HEAD:imageProcessing.py
-
 def gamma_correct(imgs_direc,processed_imgs):
     #'imgs_direc' directory where the photos without correction are
     #'processed_imgs' directory where the photos with the correction are going to be saved
 
     i=0
-=======
-
-def gamma_correct():
-
-    i = 0
-    # directory where the photos without correction are
-    imgs_hsv_direc = 'timelapse_imgs'
-
-    # directory where the photos with the correction are going to be saved
-    processed_imgs = 'hsv_imgs'
->>>>>>> eb66cfd72c9da038b14450e7ec6263f46563f33a:gamma.py
 
     if not os.path.exists(processed_imgs):
         os.mkdir(processed_imgs)
@@ -67,8 +53,6 @@ def gamma_correct():
         print('Brightness: ', round(v_avg[2]), 'Photo:', i)
         acum = acum + round(v_avg[2])
         i = i + 1
-<<<<<<< HEAD:imageProcessing.py
-
 
 def EQ_Histograma(processed_imgs,eq_direc):
     
@@ -94,6 +78,3 @@ def EQ_Histograma(processed_imgs,eq_direc):
         img.save(nameEq)
         os.remove(filename)
         i +=1
-
-=======
->>>>>>> eb66cfd72c9da038b14450e7ec6263f46563f33a:gamma.py
