@@ -1,6 +1,6 @@
 # Automatic Timelapse Processing App
 
-This application is capable of taking the photos according to the specified time interval, apply gamma correction and finally exporting two mp4 files, one with color correction and the other without.
+This application is capable of taking the photos according to the specified time interval, apply gamma correction, histogram equalization and finally exporting two mp4 files, one with color correction and the other without.
 
 ## How it works?
 
