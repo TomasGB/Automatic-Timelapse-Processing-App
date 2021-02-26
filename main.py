@@ -3,25 +3,36 @@ from tkinter import filedialog
 from tkinter import ttk
 import timelapse
 import threading 
+from cv2 import cv2
 
 def FuncStart():
 
     def processing():
         progress.pack(pady=15)
         progress.start(10)
+        #progreso.config(text="There was an error, please try again.", font="Helvetica 9")
         duracionG = float(Duracion_Entry.get())
         intervaloFoto = float(Intervalos_Entry.get())
         Resolution = str(Resolution_Entry.get())
         fotosp = str(FotosP_Entry.get())
         dispositivo = int(Dispositivo_Entry.get())
-        timelapse.timelapseCrear(duracionG,intervaloFoto,Resolution,fotosp,dispositivo)
-        progress.stop()
-        progress.pack_forget()
-        progreso.config(text="Timelapse finished.")
 
-    progreso.config(text="Processing...")
+        video = cv2.VideoCapture(dispositivo, cv2.CAP_DSHOW)
+        if (video.isOpened() == False):  
+            print("Error reading video file")
+            progress.stop()
+            progress.pack_forget()
+            progreso.config(text="There was an error, please try again.", font="Helvetica 9")
+            return quit
+        else:
+            timelapse.timelapseCrear(duracionG,intervaloFoto,Resolution,fotosp,dispositivo)
+            progress.stop()
+            progress.pack_forget()
+            progreso.config(text="Timelapse finished.", font="Helvetica 10")
+
     t = threading.Thread(target=processing)
     t.start()
+    
 
 ventana = Tk()
 ventana.geometry("525x500")

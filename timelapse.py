@@ -29,9 +29,9 @@ def timelapseCrear(durationG,photosInterval,Resolution,procPhotosKeep,device):
     video.set(cv2.CAP_PROP_FRAME_HEIGHT, height)
 
     if (video.isOpened() == False):  
-        print("Error reading video file") 
+        print("Error reading video file")
         return quit
-    
+
 
     frame_width = int(video.get(3)) 
     frame_height = int(video.get(4)) 
@@ -118,4 +118,4 @@ def timelapseCrear(durationG,photosInterval,Resolution,procPhotosKeep,device):
     video.release() 
     result.release()
     resultCorr.release() 
-    print("The Timelapse it's finished.") 
+    print("The Timelapse it's finished.")
