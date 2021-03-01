@@ -10,7 +10,6 @@ def FuncStart():
     def processing():
         progress.pack(pady=15)
         progress.start(10)
-        #progreso.config(text="There was an error, please try again.", font="Helvetica 9")
         duracionG = float(Duracion_Entry.get())
         intervaloFoto = float(Intervalos_Entry.get())
         Resolution = str(Resolution_Entry.get())
