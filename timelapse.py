@@ -6,7 +6,6 @@ import glob
 import imageProcessing
 
 def timelapseCrear(durationG,photosInterval,Resolution,procPhotosKeep,device):
-
     if Resolution == '720':
         width = 1280
         height = 720
@@ -42,7 +41,7 @@ def timelapseCrear(durationG,photosInterval,Resolution,procPhotosKeep,device):
     #0x7634706d codec code for mp4 format
 
     actualTime=datetime.datetime.now()   
-    
+
     file_name = str(datetime.date.today())+'_'+f'{actualTime.hour}hs{actualTime.minute}min{actualTime.second}sec'
 
     os.mkdir(file_name)
@@ -51,9 +50,7 @@ def timelapseCrear(durationG,photosInterval,Resolution,procPhotosKeep,device):
     resultCorr = cv2.VideoWriter(f'{file_name}/timelapse_processed.mp4',  0x7634706d, 24.97, size)
 
     #Timelapse parameters config
-    
     procPhotosKeep = procPhotosKeep.lower()
-    
     delete_imgs = False
 
     if procPhotosKeep == 'y' : 
@@ -75,7 +72,6 @@ def timelapseCrear(durationG,photosInterval,Resolution,procPhotosKeep,device):
     i = 0
 
     #takes the photos in the specified duration
-
     while datetime.datetime.now() < end:
         ret, frame = video.read()
         print('Time left:',end-datetime.datetime.now())
@@ -98,7 +94,7 @@ def timelapseCrear(durationG,photosInterval,Resolution,procPhotosKeep,device):
         if delete_imgs:
             for file in list_imgs:
                 os.remove(file)
-            
+
     processed_imgs =f'{file_name}/hsv_imgs'
     eq_direc=f'{file_name}/eq_imgs'
 
@@ -110,7 +106,7 @@ def timelapseCrear(durationG,photosInterval,Resolution,procPhotosKeep,device):
 
     #timelapse processing
     imageProcessing.gamma_correct(imgs_direc,processed_imgs)
-    imageProcessing.EQ_Histograma(processed_imgs,eq_direc)
+    imageProcessing.Histogram_EQ(processed_imgs,eq_direc)
 
     #creates the timelapse with processing
     ConvertToVideo(resultCorr,eq_direc,delete_processed_imgs)

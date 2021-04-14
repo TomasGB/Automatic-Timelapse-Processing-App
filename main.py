@@ -10,73 +10,73 @@ def FuncStart():
     def processing():
         progress.pack(pady=15)
         progress.start(10)
-        duracionG = float(Duracion_Entry.get())
-        intervaloFoto = float(Intervalos_Entry.get())
-        Resolution = str(Resolution_Entry.get())
-        fotosp = str(FotosP_Entry.get())
-        dispositivo = int(Dispositivo_Entry.get())
+        durationG = float(Duration_Entry.get())
+        photosInterval = float(Intervals_Entry.get())
+        resolution = str(Resolution_Entry.get())
+        processedPhotos = str(ProcessedPhotos_Entry.get())#fotoP
+        device = int(Device_Entry.get())
 
-        video = cv2.VideoCapture(dispositivo, cv2.CAP_DSHOW)
+        video = cv2.VideoCapture(device, cv2.CAP_DSHOW)
         if (video.isOpened() == False):  
             print("Error reading video file")
             progress.stop()
             progress.pack_forget()
-            progreso.config(text="There was an error, please try again.", font="Helvetica 9")
+            progress_label.config(text="There was an error, please try again.", font="Helvetica 9")
             return quit
         else:
-            timelapse.timelapseCrear(duracionG,intervaloFoto,Resolution,fotosp,dispositivo)
+            timelapse.timelapseCrear(durationG,photosInterval,resolution,processedPhotos,device)
             progress.stop()
             progress.pack_forget()
-            progreso.config(text="Timelapse finished.", font="Helvetica 10")
+            progress_label.config(text="Timelapse finished.", font="Helvetica 10")
 
     t = threading.Thread(target=processing)
     t.start()
     
 
-ventana = Tk()
-ventana.geometry("525x500")
-ventana.title("Automatic Timelapse Processor - Tomas Gomez Bermudez")
-ventana.config(background="#151515")
+window = Tk()
+window.geometry("525x500")
+window.title("Automatic Timelapse Processor - Tomas Gomez Bermudez")
+window.config(background="#151515")
 
-titulo = Label(ventana, text="Automatic Timelapse Processor", padx=100, pady=30, bg="#151515", foreground="#DE4C12", font="Helvetica 16 bold")
-titulo.grid(column="0", row="0", columnspan="3")
+title = Label(window, text="Automatic Timelapse Processor", padx=100, pady=30, bg="#151515", foreground="#DE4C12", font="Helvetica 16 bold")
+title.grid(column="0", row="0", columnspan="3")
 
-#Frame Crear Timelapse
+#Frame Create Timelapse
 
-groupCrear = LabelFrame(ventana, text="Create Timelapse", labelanchor=N, padx=25, pady=10, bg="#151515", foreground="#FFFFFF", font="Helvetica 12 bold")
-groupCrear.grid(column="1", row="3")
+groupCreate = LabelFrame(window, text="Create Timelapse", labelanchor=N, padx=25, pady=10, bg="#151515", foreground="#FFFFFF", font="Helvetica 12 bold")
+groupCreate.grid(column="1", row="3")
 
-Duracion_label = Label(groupCrear, text="Duration (minutes)" ,pady=5, bg="#151515", foreground="#FFFFFF", font="Helvetica 10")
-Duracion_label.pack()
-Duracion_Entry= Entry(groupCrear, width="35")
-Duracion_Entry.pack()
+Duration_label = Label(groupCreate, text="Duration (minutes)" ,pady=5, bg="#151515", foreground="#FFFFFF", font="Helvetica 10")
+Duration_label.pack()
+Duration_Entry= Entry(groupCreate, width="35")
+Duration_Entry.pack()
 
-Intervalos_label = Label(groupCrear, text="Interval between photos (seconds)" ,pady=5, bg="#151515", foreground="#FFFFFF", font="Helvetica 10")
-Intervalos_label.pack()
-Intervalos_Entry = Entry(groupCrear, width="35")
-Intervalos_Entry.pack()
+Intervals_label = Label(groupCreate, text="Interval between photos (seconds)" ,pady=5, bg="#151515", foreground="#FFFFFF", font="Helvetica 10")
+Intervals_label.pack()
+Intervals_Entry = Entry(groupCreate, width="35")
+Intervals_Entry.pack()
 
-Resolution_label = Label(groupCrear, text="Resolution (480, 720, 1080, 2k, 4k)" ,pady=5, bg="#151515", foreground="#FFFFFF", font="Helvetica 10")
+Resolution_label = Label(groupCreate, text="Resolution (480, 720, 1080, 2k, 4k)" ,pady=5, bg="#151515", foreground="#FFFFFF", font="Helvetica 10")
 Resolution_label.pack()
-Resolution_Entry = Entry(groupCrear, width="35")
+Resolution_Entry = Entry(groupCreate, width="35")
 Resolution_Entry.pack()
 
-FotosP_label = Label(groupCrear, text="Keep processed photos (y/n)" ,pady=5, bg="#151515", foreground="#FFFFFF", font="Helvetica 10")
-FotosP_label.pack()
-FotosP_Entry = Entry(groupCrear, width="35")
-FotosP_Entry.pack()
+ProcessedPhotos_label = Label(groupCreate, text="Keep processed photos (y/n)" ,pady=5, bg="#151515", foreground="#FFFFFF", font="Helvetica 10")
+ProcessedPhotos_label.pack()
+ProcessedPhotos_Entry = Entry(groupCreate, width="35")
+ProcessedPhotos_Entry.pack()
 
-Dispositivo_label = Label(groupCrear, text="Video capture device" ,pady=5, bg="#151515", foreground="#FFFFFF", font="Helvetica 10")
-Dispositivo_label.pack()
-Dispositivo_Entry = Entry(groupCrear, width="35")
-Dispositivo_Entry.pack()
+Device_label = Label(groupCreate, text="Video capture device" ,pady=5, bg="#151515", foreground="#FFFFFF", font="Helvetica 10")
+Device_label.pack()
+Device_Entry = Entry(groupCreate, width="35")
+Device_Entry.pack()
 
-progreso = Label(ventana, text=" ", bg="#151515", foreground="#FFFFFF", font="Helvetica 14")
-progreso.grid(column="0",row="5",columnspan="3")
+progress_label = Label(window, text=" ", bg="#151515", foreground="#FFFFFF", font="Helvetica 14")
+progress_label.grid(column="0",row="5",columnspan="3")
 
-botonEmpezar = ttk.Button(ventana, text="Start", command= FuncStart)
-botonEmpezar.grid(column="0", row="4",columnspan="3", pady=25 )
+beginButton = ttk.Button(window, text="Start", command= FuncStart)
+beginButton.grid(column="0", row="4",columnspan="3", pady=25 )
 
-progress = ttk.Progressbar(groupCrear, length = 100, mode = 'indeterminate')
+progress = ttk.Progressbar(groupCreate, length = 100, mode = 'indeterminate')
 
-ventana.mainloop()
+window.mainloop()

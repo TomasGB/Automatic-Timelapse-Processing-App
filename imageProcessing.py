@@ -4,6 +4,7 @@ import math
 import glob
 import os
 from PIL import Image, ImageEnhance
+
 def gamma_correct(imgs_direc,processed_imgs):
     #'imgs_direc' directory where the photos without correction are
     #'processed_imgs' directory where the photos with the correction are going to be saved
@@ -54,7 +55,7 @@ def gamma_correct(imgs_direc,processed_imgs):
         acum = acum + round(v_avg[2])
         i = i + 1
 
-def EQ_Histograma(processed_imgs,eq_direc):
+def Histogram_EQ(processed_imgs,eq_direc):
     
     i = 0
     for file in os.listdir(processed_imgs):
