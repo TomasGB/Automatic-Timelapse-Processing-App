@@ -4,7 +4,7 @@ This application is capable of taking the photos according to the specified time
 
 ## How it works?
 
-After taking the photos, runs the function 'gamma_correct' declared in the file ```imageProcessing.py``` wich takes every photo, convert them from RGB to HSV, calculates the average V value, applies a suitable gamma correction and saves them, then on these new photos runs the function 'EQ_Histograma' wich applies CLAHE (contrast limited adaptive histogram equalization) wich refines the overall look of the photos to finally export them as an mp4 file.
+After taking the photos, runs the function 'gamma_correct' declared in the file ```imageProcessing.py``` wich takes every photo, convert them from RGB to HSV, calculates the average V value, applies a suitable gamma correction and saves them, then on these new photos runs the function 'Histogram_EQ' wich applies CLAHE (contrast limited adaptive histogram equalization) wich refines the overall look of the photos to finally export them as an mp4 file.
 
 ## Dependencies
 
