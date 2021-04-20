@@ -26,13 +26,14 @@ After taking the photos, runs the function 'gamma_correct' declared in the file 
 
 In the ```timelapse.py``` file, in ```video = cv2.VideoCapture(device)``` , device it's used to indicate the image capture device on your computer, if you want to use the default device use 0, if you have more than one maybe you will need to change it to the correct number.
 
-## Final result:
 
-#### User Interface
 
-![UI](imgs/timelapseUI.gif)
 
-#### Examples
+## User Interface
+
+<img src="imgs/timelapseUI.gif" width="250" height="450">
+
+## Examples
 
 ![gif](imgs/timelapse_github.gif)
 
