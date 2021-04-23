@@ -3,6 +3,7 @@ import numpy as np
 import math
 import glob
 import os
+import shutil
 from PIL import Image, ImageEnhance
 
 def gamma_correct(imgs_direc,processed_imgs):
@@ -57,6 +58,9 @@ def gamma_correct(imgs_direc,processed_imgs):
 
 def Histogram_EQ(processed_imgs,eq_direc):
     
+    if not os.path.exists(eq_direc):
+        os.mkdir(eq_direc)
+        
     i = 0
     for file in os.listdir(processed_imgs):
         print('Equalizing photo: ',i)
@@ -77,5 +81,6 @@ def Histogram_EQ(processed_imgs,eq_direc):
         nameEq = f"{eq_direc}/{i}.jpg"
 
         img.save(nameEq)
-        os.remove(filename)
         i +=1
+    
+    shutil.rmtree(processed_imgs)

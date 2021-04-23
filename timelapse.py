@@ -1,9 +1,19 @@
-import os   
+import os
+import shutil
 from cv2 import cv2
 import datetime
 import time
 import glob
 import imageProcessing
+
+def ConvertToVideo(result,imgs_direc):
+        list_imgs = glob.glob(f"{imgs_direc}/*.jpg")
+        imgs_ordered = sorted(list_imgs, key=os.path.getmtime)
+
+        for file in imgs_ordered:
+            image_frame = cv2.imread(file)
+            print('processing photos...')
+            result.write(image_frame)
 
 def timelapseCrear(durationG,photosInterval,Resolution,procPhotosKeep,device):
     if Resolution == '720':
@@ -82,34 +92,21 @@ def timelapseCrear(durationG,photosInterval,Resolution,procPhotosKeep,device):
         if cv2.waitKey(1) & 0xFF == ord('q'): 
                 break
 
-    def ConvertToVideo(result,imgs_direc,delete_imgs):
-        list_imgs = glob.glob(f"{imgs_direc}/*.jpg")
-        imgs_ordered = sorted(list_imgs, key=os.path.getmtime)
-
-        for file in imgs_ordered:
-            image_frame = cv2.imread(file)
-            print('processing photos...')
-            result.write(image_frame)
-
-        if delete_imgs:
-            for file in list_imgs:
-                os.remove(file)
-
     processed_imgs =f'{file_name}/hsv_imgs'
     eq_direc=f'{file_name}/eq_imgs'
 
-    if not os.path.exists(eq_direc):
-        os.mkdir(eq_direc)
-
     #Exports the timelapse without processing
-    ConvertToVideo(result,imgs_direc,delete_imgs)
+    ConvertToVideo(result,imgs_direc)
 
     #timelapse processing
     imageProcessing.gamma_correct(imgs_direc,processed_imgs)
     imageProcessing.Histogram_EQ(processed_imgs,eq_direc)
 
     #Exports the timelapse with processing
-    ConvertToVideo(resultCorr,eq_direc,delete_processed_imgs)
+    ConvertToVideo(resultCorr,eq_direc)
+
+    if delete_processed_imgs:
+        shutil.rmtree(eq_direc)
 
     video.release() 
     result.release()
