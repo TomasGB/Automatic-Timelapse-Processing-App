@@ -36,15 +36,15 @@ def timelapseCrear(durationG,photosInterval,Resolution,procPhotosKeep,device):
     frame_height = int(video.get(4)) 
     size = (frame_width, frame_height)
     print(size)
-    
-    #cv2.VideoWriter('filename',  cv2.VideoWriter_fourcc(*'Codec'), fps, resolution)
-    #0x7634706d codec code for mp4 format
 
-    actualTime=datetime.datetime.now()   
+    actualTime=datetime.datetime.now()
 
     file_name = str(datetime.date.today())+'_'+f'{actualTime.hour}hs{actualTime.minute}min{actualTime.second}sec'
 
     os.mkdir(file_name)
+
+    #cv2.VideoWriter('filename',  cv2.VideoWriter_fourcc(*'Codec'), fps, resolution)
+    #0x7634706d codec code for mp4 format
 
     result = cv2.VideoWriter(f'{file_name}/timelapse.mp4', 0x7634706d , 24.97, size)
     resultCorr = cv2.VideoWriter(f'{file_name}/timelapse_processed.mp4',  0x7634706d, 24.97, size)
@@ -101,14 +101,14 @@ def timelapseCrear(durationG,photosInterval,Resolution,procPhotosKeep,device):
     if not os.path.exists(eq_direc):
         os.mkdir(eq_direc)
 
-    #creates the timelapse without processing
+    #Exports the timelapse without processing
     ConvertToVideo(result,imgs_direc,delete_imgs)
 
     #timelapse processing
     imageProcessing.gamma_correct(imgs_direc,processed_imgs)
     imageProcessing.Histogram_EQ(processed_imgs,eq_direc)
 
-    #creates the timelapse with processing
+    #Exports the timelapse with processing
     ConvertToVideo(resultCorr,eq_direc,delete_processed_imgs)
 
     video.release() 
