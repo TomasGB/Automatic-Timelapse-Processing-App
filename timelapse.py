@@ -15,7 +15,7 @@ def ConvertToVideo(result,imgs_direc):
             print('processing photos...')
             result.write(image_frame)
 
-def timelapseCrear(durationG,photosInterval,Resolution,procPhotosKeep,device):
+def createTimelapse(durationG,photosInterval,Resolution,procPhotosKeep,device):
     if Resolution == '720':
         width = 1280
         height = 720

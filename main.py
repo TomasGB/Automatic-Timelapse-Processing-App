@@ -42,7 +42,7 @@ def FuncStart():
             progress_label.config(text="There was an error, please try again.", font="Helvetica 9")
             return quit
         else:
-            timelapse.timelapseCrear(durationG,photosInterval,resolution,processedPhotos,device)
+            timelapse.createTimelapse(durationG,photosInterval,resolution,processedPhotos,device)
             progress.stop()
             progress.pack_forget()
             progress_label.config(text="Timelapse finished.", font="Helvetica 10")
